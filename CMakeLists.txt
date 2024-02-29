@@ -10,5 +10,9 @@ add_executable(DevicesOOP main.cpp
         Mouse.cpp
         Headphones.h
         Headphones.cpp
-        MoveExample.h
-        MoveExample.cpp)
+        MechanicKeyboard.cpp
+        MechanicKeyboard.h
+        InEarHeadphones.cpp
+        InEarHeadphones.h
+        GamingMouse.cpp
+        GamingMouse.h)
