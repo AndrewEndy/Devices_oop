@@ -75,6 +75,13 @@ Headphones::Headphones(std::string &&NameOfKeyboard, float Weight, std::string &
 {
     cout<<"called constructor default"<<endl;
 }
+
+Headphones::Headphones(const Headphones &&other) noexcept: name(std::move(other.name)), weight(other.weight), type_of_material(std::move(other.type_of_material)), microphone(other.microphone) {
+
+    cout<<"Move constructor"<<endl;
+}
+
 Headphones::~Headphones(){
     cout<<"called Headphones destructor"<<endl;
 }
+

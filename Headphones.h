@@ -28,6 +28,7 @@ public:
     void info();
 
     Headphones(string &&NameOfHeadphones="None", float Weight=0, string &&TypeOfMaterial="None", bool MICROPHONE=false);
+    Headphones(const Headphones &&other)noexcept;
     ~Headphones();
 };
 
