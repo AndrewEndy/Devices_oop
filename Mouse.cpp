@@ -5,74 +5,51 @@
 #include "Mouse.h"
 #include <iostream>
 int Mouse::AmountOfMice=0;
-void Mouse::set_name()
+
+string Mouse::set_name(string name)
 {
-    cout<<"Введіть назву мишки: ";
-    string NAME;
-    cin>>NAME;
-    name=NAME;
+
+    return this->name=name;
 }
-void Mouse::get_name()
+string Mouse::get_name()
 {
-    cout<<"Назва мишки: "<<name<<endl;
+    return name;
 }
-void Mouse::set_weight()
+float Mouse::set_weight(float weight)
 {
-    cout<<"Введіть вагу мишки: ";
-    float WEIGHT;
-    cin>>WEIGHT;
-    weight=WEIGHT;
+    return this->weight=weight;
 }
-void Mouse::get_weight()
+float Mouse::get_weight()
 {
-    cout<<"Вага мишки: "<<weight<<" кг"<<endl;
+    return weight;
 }
-void Mouse::set_TypeOfMaterial()
+string Mouse::set_TypeOfMaterial(string typeOfMaterial)
 {
-    cout<<"Введіть тип матеріалу мишки: ";
-    string TYPE;
-    cin>>TYPE;
-    type_of_material=TYPE;
+    return type_of_material=typeOfMaterial;
 }
-void Mouse::get_TypeOfMaterial()
+string Mouse::get_TypeOfMaterial()
 {
-    cout<<"Тип матеріалу мишки: "<<type_of_material<<endl;
+    return type_of_material;
 }
-void Mouse::set_wireless()
+bool Mouse::set_wireless(bool wireless)
 {
-    int WIRELESS;
-    cout<<"Провідна чи безпроводна мишка (1-провідна, 0-безпровідна): ";
-    cin>>WIRELESS;
-    if (WIRELESS==1)
-    {
-        wireless=true;
-    }
-    else
-    {
-        wireless=false;
-    }
+    return this->wireless=wireless;
 }
-void Mouse::get_wireless()
+bool Mouse::get_wireless()
 {
-    if (wireless==true)
-    {
-        cout<<"Мишка провідна"<<endl;
-    }
-    else
-    {
-        cout<<"Мишка безпровідна"<<endl;
-    }
+    return wireless;
 }
 void Mouse::info()
 {
-    cout<<"Назва мишки: "<<name
+    cout<<"INFO: "<<endl
+        <<"Назва мишки: "<<name
         <<"\nВага мишки: "<<weight<<" кг"
         <<"\nТип матеріалу мишки: "<<type_of_material
-        <<"\nМишка провідна: "<<wireless<<endl<<endl;
+        <<"\nМишка провідна: "<<wireless<<endl;
 }
 
-void Mouse::get_amountOfMice() {
-    cout<<"Кількість мишок: "<<AmountOfMice<<endl;
+int Mouse::get_amountOfMice() {
+    return AmountOfMice;
 }
 
 std::ostream &operator<<(std::ostream &os, const Mouse &mouse) {
@@ -94,10 +71,12 @@ std::istream &operator>>(std::istream &is, Mouse &mouse) {
     return is;
 }
 Mouse &Mouse::operator=(const Mouse &other){
-    name=other.name;
-    weight=other.weight;
-    type_of_material=other.type_of_material;
-    wireless=other.wireless;
+    if(this!=&other){
+        name=other.name;
+        weight=other.weight;
+        type_of_material=other.type_of_material;
+        wireless=other.wireless;
+    }
     return  *this;
 }
 Mouse Mouse::operator+(float num) {
@@ -105,6 +84,10 @@ Mouse Mouse::operator+(float num) {
     return *this;
 }
 Mouse Mouse::operator-(float num) {
+    if(weight<0.1){
+        weight=0;
+        return *this;
+    }
     weight-=num;
     return *this;
 }
@@ -113,6 +96,10 @@ Mouse Mouse::operator+=(float num) {
     return *this;
 }
 Mouse Mouse::operator-=(float num) {
+    if(weight<0.1){
+        weight=0;
+        return *this;
+    }
     weight-=num;
     return *this;
 }
@@ -135,6 +122,7 @@ Mouse::Mouse()
     weight=0;
     type_of_material="None";
     wireless= false;
+    cout<<"called Mouse constructor"<<endl;
 }
 Mouse::Mouse(std::string NameOfMouse): Mouse()
 {

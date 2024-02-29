@@ -19,16 +19,16 @@ private:
     static int AmountOfMice;
 
 public:
-    void set_name();
-    void get_name();
-    void set_weight();
-    void get_weight();
-    void set_TypeOfMaterial();
-    void get_TypeOfMaterial();
-    void set_wireless();
-    void get_wireless();
+    string set_name(string name);
+    string get_name();
+    float set_weight(float weight);
+    float get_weight();
+    string set_TypeOfMaterial(string typeOfMaterial);
+    string get_TypeOfMaterial();
+    bool set_wireless(bool wireless);
+    bool get_wireless();
     void info();
-    void get_amountOfMice();
+    int get_amountOfMice();
 
     friend std::ostream  &operator<<(std::ostream &os, const Mouse &mouse);
     friend std::istream &operator>>(std::istream &is, Mouse &mouse);

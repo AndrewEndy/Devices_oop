@@ -17,22 +17,19 @@ private:
     string type_of_material;
 
 public:
-    void set_name();
-    void get_name()const;
-    void set_TypeOfMaterial();
-    void get_TypeOfMaterial()const;
-    void set_weight();
-    void get_weight()const;
+    string set_name(string name);
+    string get_name()const;
+    string set_TypeOfMaterial(string typeOfMaterial);
+    string get_TypeOfMaterial()const;
+    float set_weight(float weight);
+    float get_weight()const;
     void info()const;
 
     Keyboard();
     Keyboard(string &&name);
     Keyboard(string &&name, float weight);
     Keyboard(string &&name, float weight, string &&type_of_material);
-
     Keyboard(const Keyboard &other);
-
-
     ~Keyboard();
 };
 

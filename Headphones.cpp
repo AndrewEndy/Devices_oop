@@ -4,83 +4,60 @@
 
 #include "Headphones.h"
 #include <iostream>
-void Headphones::set_name()
+using namespace std;
+string Headphones::set_name(string name)
 {
-    cout<<"Введіть назву наушників: ";
-    string NAME;
-    cin>>NAME;
-    name=NAME;
+    return this->name = name;
 }
-void Headphones::get_name()
+string Headphones::get_name()
 {
-    cout<<"Назва наушників: "<<name<<endl;
+    return name;
 }
-void Headphones::set_weight()
+float Headphones::set_weight(float weight)
 {
-    cout<<"Введіть вагу наушників: ";
-    float WEIGHT;
-    cin>>WEIGHT;
-    weight=WEIGHT;
+    return this->weight=weight;
 }
-void Headphones::get_weight()
+float Headphones::get_weight()
 {
-    cout<<"Вага наушників: "<<weight<<" кг"<<endl;
+    return weight;
 }
-void Headphones::set_TypeOfMaterial()
+string Headphones::set_TypeOfMaterial(string type_of_material)
 {
-    cout<<"Введіть тип матеріалу наушників: ";
-    string TYPE;
-    cin>>TYPE;
-    type_of_material=TYPE;
+    return this->type_of_material=type_of_material;
 }
-void Headphones::get_TypeOfMaterial()
+string Headphones::get_TypeOfMaterial()
 {
-    cout<<"Тип матеріала наушників: "<<type_of_material<<endl;
+    return type_of_material;
 }
-void Headphones::set_microphone()
+bool Headphones::set_microphone(bool microphone)
 {
-    int LASER;
-    cout<<"З мікрофоном чи без (1-з мікрофоном, 0-без лазера): ";
-    cin>>LASER;
-    if (LASER==1)
-    {
-        microphone=true;
-    }
-    else
-    {
-        microphone=false;
-    }
+    return this->microphone=microphone;
 }
-void Headphones::get_microphone()
+bool Headphones::get_microphone()
 {
-    if (microphone==true)
-    {
-        cout<<"Наушники з мікрофоном"<<endl;
-    }
-    else
-    {
-        cout<<"Наушники без мікрофоном"<<endl;
-    }
+    return microphone;
 }
 void Headphones::info()
 {
-    cout<<"Назва наушників: "<<name
+    cout<<"INFO: "<<endl
+        <<"Назва наушників: "<<name
         <<"\nВага наушників: "<<weight<<" кг"
         <<"\nТип наушників наушників: "<<type_of_material
-        <<"\nНаушники з мікрофоном: "<<microphone<<endl<<endl;
+        <<"\nНаушники з мікрофоном: "<<microphone<<endl;
 }
 
 Headphones::Headphones(std::string &&NameOfKeyboard, float Weight, std::string &&TypeOfMaterial, bool MICROPHONE):
         name{NameOfKeyboard}, weight(Weight), type_of_material(TypeOfMaterial), microphone(MICROPHONE)
 {
-    cout<<"called constructor default"<<endl;
+    cout<<"called Headphones constructor"<<endl;
 }
-
-Headphones::Headphones(const Headphones &&other) noexcept: name(std::move(other.name)), weight(other.weight), type_of_material(std::move(other.type_of_material)), microphone(other.microphone) {
-
-    cout<<"Move constructor"<<endl;
+Headphones::Headphones(const Headphones &&other) noexcept{
+    name=move(other.name);
+    weight=other.weight;
+    type_of_material=move(other.type_of_material);
+    microphone=other.microphone;
+    cout<<"Headphones move constructor"<<endl;
 }
-
 Headphones::~Headphones(){
     cout<<"called Headphones destructor"<<endl;
 }
