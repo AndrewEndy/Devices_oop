@@ -9,4 +9,6 @@ add_executable(DevicesOOP main.cpp
         Mouse.h
         Mouse.cpp
         Headphones.h
-        Headphones.cpp)
+        Headphones.cpp
+        MoveExample.h
+        MoveExample.cpp)
