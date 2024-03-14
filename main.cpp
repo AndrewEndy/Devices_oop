@@ -5,7 +5,15 @@
 #include "MechanicKeyboard.h"
 #include "InEarHeadphones.h"
 #include "GamingMouse.h"
+#include "Printable.h"
 using namespace std;
+
+
+ostream &operator<<(ostream &os, const Printable &obj) {
+    obj.print(os);
+    return os;
+}
+
 int main() {
 //  Copy constructor
 //    Keyboard warmila("Warmila",2,"plastic");
@@ -88,6 +96,43 @@ int main() {
 //    royal.set_name("Royal");
 //    cros.info();
 //    royal.info();
-
+//
+//проблему статичної прив’язки методів (Static Method Binding)
+//    Keyboard a;
+//    MechanicKeyboard b;
+//    Keyboard *p=&b;
+//    p->doSomething();
+//
+// (Run-time) поліморфізму
+//    Mouse a;
+//    GamingMouse b;
+//    Mouse *p=&a;
+//    p->info();
+//
+// virtual destructor
+//    Keyboard *a=new MechanicKeyboard;
+//    delete a;
+//
+//final
+//    GamingMouse a;
+//    a.Click();
+//
+// Base class reference
+//    InEarHeadphones a;
+//    Headphones b;
+//    Headphones &pos = b;
+//    pos.print_name_class();
+//
+// Pure virtual function + інтерфейс
+//    MechanicKeyboard a("rty",2.4,"metal","green");
+//    cout << a;
+//    GamingMouse a("wirma",1.3,"plastic",true,3,true);
+//    cout<<a;
+//    InEarHeadphones a("warmila",4,"plastic",true,false);
+//    cout<<a;
+//
+// 7
+//    InEarHeadphones a;
+//    a.print_class_name();
     return 0;
 }

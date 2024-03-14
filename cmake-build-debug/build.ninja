@@ -91,6 +91,12 @@ build CMakeFiles/DevicesOOP.dir/GamingMouse.cpp.obj: CXX_COMPILER__DevicesOOP_un
   OBJECT_DIR = CMakeFiles\DevicesOOP.dir
   OBJECT_FILE_DIR = CMakeFiles\DevicesOOP.dir
 
+build CMakeFiles/DevicesOOP.dir/Printable.cpp.obj: CXX_COMPILER__DevicesOOP_unscanned_Debug C$:/Users/Endi/CLionProjects/DevicesOOP/Printable.cpp || cmake_object_order_depends_target_DevicesOOP
+  DEP_FILE = CMakeFiles\DevicesOOP.dir\Printable.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\DevicesOOP.dir
+  OBJECT_FILE_DIR = CMakeFiles\DevicesOOP.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target DevicesOOP
@@ -99,7 +105,7 @@ build CMakeFiles/DevicesOOP.dir/GamingMouse.cpp.obj: CXX_COMPILER__DevicesOOP_un
 #############################################
 # Link the executable DevicesOOP.exe
 
-build DevicesOOP.exe: CXX_EXECUTABLE_LINKER__DevicesOOP_Debug CMakeFiles/DevicesOOP.dir/main.cpp.obj CMakeFiles/DevicesOOP.dir/Keyboard.cpp.obj CMakeFiles/DevicesOOP.dir/Mouse.cpp.obj CMakeFiles/DevicesOOP.dir/Headphones.cpp.obj CMakeFiles/DevicesOOP.dir/MechanicKeyboard.cpp.obj CMakeFiles/DevicesOOP.dir/InEarHeadphones.cpp.obj CMakeFiles/DevicesOOP.dir/GamingMouse.cpp.obj
+build DevicesOOP.exe: CXX_EXECUTABLE_LINKER__DevicesOOP_Debug CMakeFiles/DevicesOOP.dir/main.cpp.obj CMakeFiles/DevicesOOP.dir/Keyboard.cpp.obj CMakeFiles/DevicesOOP.dir/Mouse.cpp.obj CMakeFiles/DevicesOOP.dir/Headphones.cpp.obj CMakeFiles/DevicesOOP.dir/MechanicKeyboard.cpp.obj CMakeFiles/DevicesOOP.dir/InEarHeadphones.cpp.obj CMakeFiles/DevicesOOP.dir/GamingMouse.cpp.obj CMakeFiles/DevicesOOP.dir/Printable.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DevicesOOP.dir
