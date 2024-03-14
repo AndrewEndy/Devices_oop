@@ -17,9 +17,14 @@ public:
     bool set_wired(bool wired);
     bool get_wired();
     void info();
+
+    void print_name_class() const override;
+    void print(std::ostream &os) const override;
+    void print_class_name()const override;
+
     InEarHeadphones(string name="None",float weight=0, string typeOfMaterial="None",bool microphone=false,bool wired= false);
     InEarHeadphones(InEarHeadphones&& other)noexcept;
-    ~InEarHeadphones();
+    ~InEarHeadphones() override;
 
 };
 
