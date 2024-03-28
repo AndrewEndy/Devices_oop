@@ -1,0 +1,9 @@
+InEarHeadphones,4564,Apple,0.200000,пластик,700.000000,1,0
+Headphones,8944,JBL,0.600000,пластик,200.000000,0
+GamingMouse,2222,Logitech,0.100000,алюміній,2000.000000,0,0,0
+Keyboard,1234,Hator,2.000000,алюміній,49.990002
+MechanicKeyboard,3321,Ali,4.000000,мтеал,900.000000,black
+Mouse,9999,Logitech,0.300000,пластик,30.000000,1
+GamingMouse,6651,Logitech,0.500000,пластик,100.000000,1,3,1
+Headphones,6666,Apple,0.300000,поліурітан,1000.000000,1
+InEarHeadphones,5678,JBL,0.010000,пластик,67.000000,0,0

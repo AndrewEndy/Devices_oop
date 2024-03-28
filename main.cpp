@@ -1,138 +1,147 @@
 #include <iostream>
-#include "Mouse.h"
-#include "Keyboard.h"
-#include "Headphones.h"
-#include "MechanicKeyboard.h"
-#include "InEarHeadphones.h"
-#include "GamingMouse.h"
+#include <fstream>
+#include <string>
+#include "vector"
+#include "User.h"
 #include "Printable.h"
+#include "Admin.h"
+#include <memory>
+
 using namespace std;
-
-
 ostream &operator<<(ostream &os, const Printable &obj) {
     obj.print(os);
     return os;
 }
+istream &operator>>(std::istream &is, Printable &obj) {
+    obj.readData(is);
+    return is;
+}
 
 int main() {
-//  Copy constructor
-//    Keyboard warmila("Warmila",2,"plastic");
-//    Keyboard jonson(warmila);
-//    jonson.set_name("Jonson");
-//    warmila.info();
-//    jonson.info();
+    string URL_login = "C:\\Users\\Endi\\CLionProjects\\DevicesOOP\\files\\Login.txt";
+    string URL_product = "C:\\Users\\Endi\\CLionProjects\\DevicesOOP\\files\\Products.txt";
 
-// Move constructor
-//    Headphones apple("Apple",0.6,"plastic",true);
-//    Headphones sony(move(apple));
-//    sony.set_name("Sony");
-//    sony.info();
-//    apple.info();
+    unique_ptr<ifstream> file(new ifstream(URL_login));
+    vector<string> logins;
+    string line;
+    while (getline(*file, line)) {
+        if (line.empty()) {
+            continue;
+        }
+        logins.push_back(line);
+    }
+    file->close();
 
-//  модифікатор const
-//    const Keyboard warmila("Warmila",1.2,"plastic");
-//    Keyboard doss("Doss",2.0,"metal");
-//    doss.set_weight(3);
+    string login;
+    tryAgain:
+    cout << "Введіть ваш логін: ";
+    cin >> login;
+    bool user_flag = false;
+    bool admin_flag = false;
+    if (login == "admin") {
+        cout << "Введіть пароль: ";
+        string password;
+        cin >> password;
+        if (password == "admin") {
+            admin_flag = true;
+        }
+        else {
+            cout << "Ви ввели невірний пароль!" << endl << endl;
+            goto tryAgain;
+        }
+    }
+    else {
+        bool old_user = false;
+        for (int i = 0; i < size(logins); i++) {
+            if (login == logins[i]) {
+                user_flag = true;
+                old_user = true;
+                cout << "OLD USER" << endl;
+            }
+        }
+        if (!old_user) {
+            user_flag = true;
+            unique_ptr<ofstream> file(new ofstream(URL_login,ios::app));
+            *file << endl << login;
+            file->close();
+            cout << "NEW USER" << endl;
 
-//  модифікатор static
-//    Mouse apple("Apple",0.4,"plastic");
-//    cout<<apple.get_amountOfMice()<<endl;
-//    Mouse a;
-//    Mouse b;
-//    cout<<a.get_amountOfMice()<<endl;
-//    cout<<b.get_amountOfMice()<<endl;
+            string purchase_name_file = "C:\\Users\\Endi\\CLionProjects\\DevicesOOP\\files\\" + login + "_purchase.txt";
+            unique_ptr<ofstream> purchase_history(new ofstream(purchase_name_file));
+            purchase_history->close();
+        }
+    }
+    std::unique_ptr<Admin> admin;
+    std::unique_ptr<User> user;
+    if (admin_flag) {
+        admin=make_unique<Admin>(URL_product);
+        while (true) {
+            int choice = admin->Admin_Menu();
+            if (choice == 1) {
+                admin->Display_products();
+            }
+            if (choice == 2) {
+                try{
+                    admin->Add_product();
+                }
+                catch (int a){
+                    continue;
+                }
+            }
+            if(choice==3){
+                try{
+                    admin->Product_delete();
+                    remove(admin->get_URL().c_str());
+                    rename("C:\\Users\\Endi\\CLionProjects\\DevicesOOP\\files\\temp.txt"
+                           , admin->get_URL().c_str());
+                }
+                catch (int a){
+                    continue;
+                }
+            }
+            if (choice == 4) {
+                break;
+            }
+        }
+    }
 
-//  перевантаження унарного оператора
-//    Mouse apple("Apple",0.5,"plastic", true);
-//    --apple;
-//    apple.info();
-//    ++apple;
-//    ++apple;
-//    apple.info();
+    if(user_flag){
+        user = make_unique<User>(login, URL_product);
+        while(true){
+            int choice = user->User_Menu();
+            if(choice==1){
+                user->Display_products();
+            }
+            if(choice==2){
+                try{
+                    user->Add_product_to_Cart();
+                }
+                catch (int a){
+                    continue;}
+            }
+            if(choice==3){
+                try{
+                    user->Delete_from_Cart();
+                    remove(user->get_URL_Cart().c_str());
+                    rename("C:\\Users\\Endi\\CLionProjects\\DevicesOOP\\files\\temp.txt"
+                           , user->get_URL_Cart().c_str());
+                }
+                catch(int a){
+                    continue;
+                }
+            }
+            if(choice==4){
+                user->Display_Cart();
+            }
+            if(choice==5){
+                user->Display_history_of_purchases();
+            }
+            if(choice==6){
+                user->Pay();
+                break;
+            }
+        }
+    }
 
-//  перевантаження бінарного оператора
-//    Mouse apple("Apple",0.5,"plastic", true);
-//    apple+0.6;
-//    apple.info();
-//    apple-0.9;
-//    apple.info();
-//    apple-=0.1;
-//    apple.info();
-//    apple+=1;
-//    apple.info();
-
-//  Оператор присвоєння =
-//    Mouse apple("Apple",0.5,"plastic", true);
-//    Mouse basic;
-//    basic=apple;
-//    basic.set_name("Basic");
-//    basic.info();
-//    apple.info();
-
-//  перевантаження дружніх операторів stream exctraction та stream insertion (>>, <<)
-//    Mouse apple;
-//    cin>>apple;
-//    cout<<apple;
-
-//    Наслідування Copy constructor
-//    MechanicKeyboard warmila("Warmila",3,"metal","black");
-//    MechanicKeyboard rajion(warmila);
-//    rajion.set_name("Rajion");
-//    rajion.info();
-//    warmila.info();
-
-//  Наслідування Move constructor
-//    InEarHeadphones a("a",1.9,"plastic",true,true);
-//    InEarHeadphones b(move(a));
-//    b.set_name("b");
-//    b.info();
-//    a.info();
-
-//  Наслідування оператора =
-//    GamingMouse cros("Cros",0.8,"plastic",true,3, false);
-//    GamingMouse royal;
-//    royal=cros;
-//    royal.set_AdditionalButtons(4);
-//    royal.set_name("Royal");
-//    cros.info();
-//    royal.info();
-//
-//проблему статичної прив’язки методів (Static Method Binding)
-//    Keyboard a;
-//    MechanicKeyboard b;
-//    Keyboard *p=&b;
-//    p->doSomething();
-//
-// (Run-time) поліморфізму
-//    Mouse a;
-//    GamingMouse b;
-//    Mouse *p=&a;
-//    p->info();
-//
-// virtual destructor
-//    Keyboard *a=new MechanicKeyboard;
-//    delete a;
-//
-//final
-//    GamingMouse a;
-//    a.Click();
-//
-// Base class reference
-//    InEarHeadphones a;
-//    Headphones b;
-//    Headphones &pos = b;
-//    pos.print_name_class();
-//
-// Pure virtual function + інтерфейс
-//    MechanicKeyboard a("rty",2.4,"metal","green");
-//    cout << a;
-//    GamingMouse a("wirma",1.3,"plastic",true,3,true);
-//    cout<<a;
-//    InEarHeadphones a("warmila",4,"plastic",true,false);
-//    cout<<a;
-//
-// 7
-//    InEarHeadphones a;
-//    a.print_class_name();
     return 0;
 }

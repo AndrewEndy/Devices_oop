@@ -17,4 +17,10 @@ add_executable(DevicesOOP main.cpp
         GamingMouse.cpp
         GamingMouse.h
         Printable.cpp
-        Printable.h)
+        Printable.h
+        Admin.cpp
+        Admin.h
+        Functions.cpp
+        Functions.h
+        User.cpp
+        User.h)
